@@ -41,7 +41,7 @@ class PlayState extends FlxState
 	var optionsButton:FlxSprite;
 	var versionFolder:FlxSprite;
 
-	public static var versionString:String = "0.4.5";
+	public static var versionString:String = "0.4.6";
 
 	public static var versionsFolderPath:String = './versions/';
 
@@ -65,9 +65,9 @@ class PlayState extends FlxState
 	{
 		Prefs.initialize();
 		if (Prefs.data.snapshot)
-			http = new Http("https://raw.githubusercontent.com/VideoBotYT/Universe-Engine/refs/heads/snapshot/versionListSnaps");
+			http = new Http("https://raw.githubusercontent.com/Team-UniverseEngine/Universe-Engine/refs/heads/main/versionListSnaps");
 		else
-			http = new Http("https://raw.githubusercontent.com/VideoBotYT/Universe-Engine/refs/heads/main/versionList.txt");
+			http = new Http("https://raw.githubusercontent.com/Team-UniverseEngine/Universe-Engine/refs/heads/main/versionList.txt");
 
 		FlxG.sound.playMusic(Paths.music("Universe Launcher Menu Music"), 0.7);
 
@@ -283,9 +283,9 @@ class PlayState extends FlxState
 	// The following does a return on missing files after calling installGame() so that it can complete at the end of zipping files.
 	function prepareInstall(endFunction:Void->Void)
 	{
-		online_url = "https://github.com/VideoBotYT/Universe-Engine/releases/download/" + version.selectedLabel + '/FNF-Universe-Engine-windows.zip';
+		online_url = "https://github.com/Team-UniverseEngine/Universe-Engine/releases/download/" + version.selectedLabel + '/FNF-Universe-Engine-windows.zip';
 		if (version.selectedLabel == "0.1.0")
-			online_url = "https://github.com/VideoBotYT/Universe-Engine/releases/download/0.1.0/Universe.Engine.0.1.0.zip";
+			online_url = "https://github.com/Team-UniverseEngine/Universe-Engine/releases/download/0.1.0/Universe.Engine.0.1.0.zip";
 		// trace("download url: " + online_url);
 
 		if (!FileSystem.exists(versionsFolderPath + '/' + version.selectedLabel + "/"))

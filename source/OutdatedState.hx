@@ -33,7 +33,7 @@ class OutdatedState extends FlxState
 			if (FlxG.keys.anyJustPressed([FlxKey.ENTER]))
 			{
 				leftState = true;
-				CoolUtil.browserLoad("https://github.com/VideoBotYT/Universe-Engine-Launhcer/releases");
+				CoolUtil.browserLoad("https://github.com/Team-UniverseEngine/Universe-Engine-Launcher/releases");
 			}
 			else if (FlxG.keys.anyJustPressed([FlxKey.ESCAPE]))
 			{

@@ -39,7 +39,7 @@ class Main extends Sprite
 	function updater()
 	{
 		trace('checking for update');
-		var http = new haxe.Http("https://raw.githubusercontent.com/VideoBotYT/Universe-Engine-Launhcer/refs/heads/main/gitVersion.txt");
+		var http = new haxe.Http("https://raw.githubusercontent.com/Team-UniverseEngine/Universe-Engine-Launcher/refs/heads/main/gitVersion.txt");
 
 		http.onData = function(data:String)
 		{
