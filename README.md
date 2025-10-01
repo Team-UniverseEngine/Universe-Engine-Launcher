@@ -15,3 +15,6 @@ If you want updates about Universe Engine, please go check at the discord server
 Please, do a PR on the `new` branch. <br>
 You will be credited on the launcher for helping us ([Dave](https://daveberry.netlify.app/)) out. <br>
 Thank you for your time to read this and have a great rest of your day. <br>
+
+# which language did we choose?:
+- `Python`
