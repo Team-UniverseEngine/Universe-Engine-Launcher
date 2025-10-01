@@ -1,0 +1,7 @@
+# common use of venv
+venv
+.venv
+
+# python caching
+*.pyc
+
