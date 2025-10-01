@@ -3,7 +3,7 @@ import customtkinter as ctk
 def initialize():
     root = ctk.CTk()
     root.title("Universe Launcher")
-    root.geometry("600x400")
+    root.geometry("640x480")
     
     userInterface(root)
     
@@ -26,6 +26,12 @@ def userInterface(root):
             "buttonName": "Options",
             "execCommand": startOptions,
             "padX": (5, 10),
+            "side": "left"
+        },
+        {
+            "buttonName": "Versions",
+            "execCommand": startFolder,
+            "padX": (5, 10),
             "side": "right"
         }
     ]
@@ -47,3 +53,6 @@ def startUniverse():
     
 def startOptions():
     print("barks at u")
+
+def startFolder():
+    print("idk ;m;")
