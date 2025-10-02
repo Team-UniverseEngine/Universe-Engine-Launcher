@@ -5,6 +5,7 @@ import tkinter as tk
 import src.handler.path as path
 from PIL import Image, ImageColor
 import customtkinter as ctk
+import src.main.settingsMenu as settings
 
 def initialize():
     root = ctk.CTk()
@@ -83,6 +84,7 @@ def startUniverse():
     
 def startOptions():
     print("barks at u")
+    settings.init()
 
 def startFolder():
     print("idk ;m;")
