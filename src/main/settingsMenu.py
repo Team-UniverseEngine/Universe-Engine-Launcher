@@ -1,36 +1,25 @@
-import os
-import sys
-
-import tkinter as tk
-import src.handler.path as path
 import customtkinter as ctk
+import src.handler.topLevelIcon as TLI
 
 def init():
-    root = ctk.CTk()
-    root.title("Settings")
-    root.geometry("360x240")
-
-    if sys.platform == "win32":
-        iconPath = os.path.join(path.imagePath(), 'icon64.ico')
-        if os.path.exists(iconPath):
-            root.iconbitmap(iconPath)
-    else:
-        iconPath = os.path.join(path.imagePath(), 'icon64.png')
-        if os.path.exists(iconPath):
-            root.iconphoto(False, tk.PhotoImage(file=iconPath))
+    settingsWindow = ctk.CTkToplevel()
+    settingsWindow.title("Settings")
+    settingsWindow.geometry("360x240")
     
-    ui(root)
+    settingsWindow.transient()
+    settingsWindow.after(10, settingsWindow.grab_set)
     
-    root.mainloop()
+    TLI.I(settingsWindow)
+    ui(settingsWindow)
 
-def ui(root):
-    mainFrame = ctk.CTkFrame(root, fg_color="transparent")
+def ui(parent):
+    mainFrame = ctk.CTkFrame(parent, fg_color="transparent")
     mainFrame.pack(pady=10, padx=10)
 
     settingsButtons = [
         {
             "buttonName": "TestButton",
-            "execCommand": root.destroy,
+            "execCommand": parent.destroy,
             "padY": (5, 10),
             "side": "top"
         },
