@@ -6,6 +6,7 @@ import src.handler.path as path
 from PIL import Image, ImageColor
 import customtkinter as ctk
 import src.main.settingsMenu as settings
+import src.backend.fetchVersions as FV
 
 def initialize():
     root = ctk.CTk()
@@ -23,6 +24,8 @@ def initialize():
     
     imageInterface(root)
     userInterface(root)
+    
+    FV.init()
     
     root.mainloop()
     
