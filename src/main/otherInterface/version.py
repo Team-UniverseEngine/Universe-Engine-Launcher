@@ -1,10 +1,12 @@
 import customtkinter as ctk
 import src.handler.topLevelIcon as TLI
+import src.backend.fetchVersions as fV
 
 def init():
     instanceWindow = ctk.CTkToplevel()
-    instanceWindow.title("New Instance")
-    instanceWindow.geometry("640x480")
+    instanceWindow.title("Install a new version")
+    instanceWindow.geometry("300x480")
+    instanceWindow.resizable(False, False)
     
     instanceWindow.transient()
     instanceWindow.after(10, instanceWindow.grab_set)
@@ -14,13 +16,19 @@ def init():
 
 def ui(parent):
     mainFrame = ctk.CTkFrame(parent, fg_color="transparent")
-    mainFrame.pack(pady=10, padx=10)
+    mainFrame.pack(pady=10, padx=10, fill="both", expand=True)
 
-    buttonFrame = ctk.CTkFrame(mainFrame, fg_color="#1E1E1E")
-    buttonFrame.pack(side="bottom", fill="y", expand=True)
+    versionFrame = ctk.CTkScrollableFrame(mainFrame, fg_color="#1E1E1E")
+    versionFrame.pack(pady=10, padx=10, fill="both", expand=True)
 
-    versionSelect = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text="Select Version", command=parent.destroy)
-    versionSelect.pack(padx=10, pady=10, fill="y", expand=True, side="left")
+    versions = fV.fetchVersions()
+    if versions:
+        for version in versions:
+            versionButton = ctk.CTkButton(versionFrame, text=version, command=lambda v=version: print(v))
+            versionButton.pack(side="top", padx=5, pady=5, fill="x")
+
+    buttonFrame = ctk.CTkFrame(mainFrame, fg_color="transparent")
+    buttonFrame.pack(side="bottom", fill="x", pady=10, padx=10)
     
-    cancelSelect = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text="Cancel", command=parent.destroy)
-    cancelSelect.pack(padx=10, pady=10, fill="y", expand=True, side="right")
+    cancelButton = ctk.CTkButton(buttonFrame, text="Cancel", command=parent.destroy)
+    cancelButton.pack(side="top")

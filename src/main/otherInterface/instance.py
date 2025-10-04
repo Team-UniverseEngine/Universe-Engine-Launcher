@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import src.handler.topLevelIcon as TLI
+import src.main.otherInterface.version as ver
 
 def init():
     instanceWindow = ctk.CTkToplevel()
@@ -19,7 +20,7 @@ def ui(parent):
     buttonFrame = ctk.CTkFrame(mainFrame, fg_color="#1E1E1E")
     buttonFrame.pack(side="bottom", fill="y", expand=True)
     
-    instanceSelect = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text="Select Instance", command=parent.destroy)
+    instanceSelect = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text="Install a new version", command=ver.init)
     instanceSelect.pack(padx=10, pady=10, fill="y", expand=True, side="left")
     
     cancelSelect = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text="Cancel", command=parent.destroy)

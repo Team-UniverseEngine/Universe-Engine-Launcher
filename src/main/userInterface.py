@@ -27,7 +27,7 @@ def initialize():
     
     imageInterface(root)
     labelText(root)
-    versionAndInstance(root)
+    instanceInterface(root)
     mainButton(root)
     
     FV.init()
@@ -78,7 +78,6 @@ def imageInterface(root):
     container.pack(pady=20, padx=10)
 
     imagePath = os.path.join(path.imagePath(), 'universe.png')
-
     if os.path.exists(imagePath):
         image = Image.open(imagePath)
         ctkImage = ctk.CTkImage(image, size=(100, 100))
@@ -90,23 +89,15 @@ def labelText(root):
     textLabel = ctk.CTkFrame(root, fg_color="transparent")
     textLabel.pack(pady=10, padx=10)
     
-    verions = FV.fetchVersions()
-    
-    versionText = ctk.CTkLabel(textLabel, text="Current version selected: ", text_color="#FFFFFF")
-    versionText.pack()
-    
     instanceText = ctk.CTkLabel(textLabel, text="Current instance selected: ", text_color="#FFFFFF")
     instanceText.pack()
     
-def versionAndInstance(root):
+def instanceInterface(root):
     container = ctk.CTkFrame(root, fg_color="#1E1E1E")
     container.pack(pady=10, padx=10)
     
-    versionButton = ctk.CTkButton(container, text="Select version", command=ver.init, fg_color="#1B1B1B")
-    versionButton.pack(pady=10, padx=(10, 5), expand=True, fill="x", side="left")
-    
     instanceButton = ctk.CTkButton(container, text="Select Instance", command=inst.init, fg_color="#1B1B1B")
-    instanceButton.pack(pady=10, padx=(5, 10), expand=True, fill="x", side="right")
+    instanceButton.pack(pady=10, padx=10, expand=True, fill="x", side="right")
     
 def startUniverse():
     print("paws at u")

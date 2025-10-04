@@ -14,5 +14,4 @@ def init():
         
 def fetchVersions():
     versionList = URL.text.split()
-    for version in versionList:
-        return version
+    return versionList
