@@ -8,10 +8,13 @@ import customtkinter as ctk
 import src.main.settingsMenu as settings
 import src.backend.fetchVersions as FV
 
+import src.main.otherInterface.version as ver
+import src.main.otherInterface.instance as inst
+
 def initialize():
     root = ctk.CTk()
     root.title("Universe Launcher")
-    root.geometry("640x480")
+    root.geometry("640x400")
 
     if sys.platform == "win32":
         iconPath = os.path.join(path.imagePath(), 'icon64.ico')
@@ -24,13 +27,14 @@ def initialize():
     
     imageInterface(root)
     labelText(root)
-    userInterface(root)
+    versionAndInstance(root)
+    mainButton(root)
     
     FV.init()
     
     root.mainloop()
     
-def userInterface(root):
+def mainButton(root):
     mainFrame = ctk.CTkFrame(root, fg_color="transparent")
     mainFrame.pack(pady=10, padx=10)
     
@@ -49,7 +53,7 @@ def userInterface(root):
             "side": "left"
         },
         {
-            "buttonName": "Versions",
+            "buttonName": "Folder",
             "execCommand": startFolder,
             "padX": (5, 10),
             "side": "right"
@@ -93,6 +97,16 @@ def labelText(root):
     
     instanceText = ctk.CTkLabel(textLabel, text="Current instance selected: ", text_color="#FFFFFF")
     instanceText.pack()
+    
+def versionAndInstance(root):
+    container = ctk.CTkFrame(root, fg_color="#1E1E1E")
+    container.pack(pady=10, padx=10)
+    
+    versionButton = ctk.CTkButton(container, text="Select version", command=ver.init, fg_color="#1B1B1B")
+    versionButton.pack(pady=10, padx=(10, 5), expand=True, fill="x", side="left")
+    
+    instanceButton = ctk.CTkButton(container, text="Select Instance", command=inst.init, fg_color="#1B1B1B")
+    instanceButton.pack(pady=10, padx=(10, 5), expand=True, fill="x", side="right")
     
 def startUniverse():
     print("paws at u")
