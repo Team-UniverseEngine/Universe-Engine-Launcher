@@ -13,7 +13,8 @@ def init():
         print("Is your internet running? Can't fetch!")
         
 def fetchVersions():
-    fetchVersions = requests.get("https://raw.githubusercontent.com/Team-UniverseEngine/Universe-Engine/refs/heads/main/versionList.txt")
-    for versions in fetchVersions:
-        if str("\n") in versions:
-            versions.replace("\n")
+    response = requests.get("https://raw.githubusercontent.com/Team-UniverseEngine/Universe-Engine/refs/heads/main/versionList.txt")
+    versionList = response.text.split()
+    
+    for version in versionList:
+        print(version)
