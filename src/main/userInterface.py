@@ -23,6 +23,7 @@ def initialize():
             root.iconphoto(False, tk.PhotoImage(file=iconPath))
     
     imageInterface(root)
+    labelText(root)
     userInterface(root)
     
     FV.init()
@@ -32,7 +33,6 @@ def initialize():
 def userInterface(root):
     mainFrame = ctk.CTkFrame(root, fg_color="transparent")
     mainFrame.pack(pady=10, padx=10)
-    
     
     # ==================== BUTTONS ====================
     mainButtons = [
@@ -79,8 +79,20 @@ def imageInterface(root):
         image = Image.open(imagePath)
         ctkImage = ctk.CTkImage(image, size=(100, 100))
         imageLabel = ctk.CTkLabel(container, image=ctkImage, text="")
-        imageLabel.image = image
+        imageLabel.image = image #type: ignore
         imageLabel.pack(pady=10)
+        
+def labelText(root):
+    textLabel = ctk.CTkFrame(root, fg_color="transparent")
+    textLabel.pack(pady=10, padx=10)
+    
+    verions = FV.fetchVersions()
+    
+    versionText = ctk.CTkLabel(textLabel, text="Current version selected: ", text_color="#FFFFFF")
+    versionText.pack()
+    
+    instanceText = ctk.CTkLabel(textLabel, text="Current instance selected: ", text_color="#FFFFFF")
+    instanceText.pack()
     
 def startUniverse():
     print("paws at u")
