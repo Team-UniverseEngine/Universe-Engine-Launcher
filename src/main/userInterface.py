@@ -106,7 +106,7 @@ def versionAndInstance(root):
     versionButton.pack(pady=10, padx=(10, 5), expand=True, fill="x", side="left")
     
     instanceButton = ctk.CTkButton(container, text="Select Instance", command=inst.init, fg_color="#1B1B1B")
-    instanceButton.pack(pady=10, padx=(10, 5), expand=True, fill="x", side="right")
+    instanceButton.pack(pady=10, padx=(5, 10), expand=True, fill="x", side="right")
     
 def startUniverse():
     print("paws at u")
