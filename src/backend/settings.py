@@ -16,7 +16,7 @@ def getAppConfigDirectory():
     elif sys.platform == 'darwin': # macOS
         return os.path.join(os.path.expanduser('~'), 'Library', 'Application Support', 'Universe Engine Launcher')
     # fallback for other systems or if APPDATA is not set
-    return os.path.join(os.path.expanduser('~'), '.noteted')
+    return os.path.join(os.path.expanduser('~'), '.Universe Engine Launcher')
 
 appDirectory = getAppConfigDirectory()
 if not os.path.exists(appDirectory):

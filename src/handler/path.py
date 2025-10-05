@@ -8,3 +8,6 @@ def assetsPath():
 
 def imagePath():
     return os.path.join(assetsPath(), 'images')
+    
+def iconPath():
+    return os.path.join(assetsPath(), 'icons')

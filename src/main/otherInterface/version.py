@@ -1,6 +1,6 @@
 import customtkinter as ctk
 import src.handler.topLevelIcon as TLI
-import src.backend.fetchVersions as fV
+import src.backend.fetchVersions as FV
 
 def init():
     instanceWindow = ctk.CTkToplevel()
@@ -11,6 +11,7 @@ def init():
     instanceWindow.transient()
     instanceWindow.after(10, instanceWindow.grab_set)
     
+    FV.init()
     TLI.I(instanceWindow)
     ui(instanceWindow)
 
@@ -21,7 +22,7 @@ def ui(parent):
     versionFrame = ctk.CTkScrollableFrame(mainFrame, fg_color="#1E1E1E")
     versionFrame.pack(pady=10, padx=10, fill="both", expand=True)
 
-    versions = fV.fetchVersions()
+    versions = FV.fetchVersions()
     if versions:
         for version in versions:
             versionButton = ctk.CTkButton(versionFrame, text=version, command=lambda v=version: print(v))

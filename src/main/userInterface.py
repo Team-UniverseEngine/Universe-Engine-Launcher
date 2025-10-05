@@ -6,7 +6,6 @@ import src.handler.path as path
 from PIL import Image, ImageColor
 import customtkinter as ctk
 import src.main.settingsMenu as settings
-import src.backend.fetchVersions as FV
 
 import src.main.otherInterface.version as ver
 import src.main.otherInterface.instance as inst
@@ -25,55 +24,61 @@ def initialize():
         if os.path.exists(iconPath):
             root.iconphoto(False, tk.PhotoImage(file=iconPath))
     
-    imageInterface(root)
-    labelText(root)
-    instanceInterface(root)
     mainButton(root)
-    
-    FV.init()
+    funnyInterface(root)
+    instanceInterface(root)
     
     root.mainloop()
     
 def mainButton(root):
     mainFrame = ctk.CTkFrame(root, fg_color="transparent")
-    mainFrame.pack(pady=10, padx=10)
+    mainFrame.pack(pady=10, padx=10, fill="y", side="left")
     
     # ==================== BUTTONS ====================
     mainButtons = [
         {
+            "buttonName": "Folder",
+            "imageIcon": "folder",
+            "execCommand": startFolder,
+            "padY": (10, 5),
+            "side": "top"
+        },
+        {
             "buttonName": "Start",
+            "imageIcon": "play",
             "execCommand": startUniverse,
-            "padX": (10, 5),
-            "side": "left"
+            "padY": (5, 5),
+            "side": "top"
         },
         {
             "buttonName": "Options",
+            "imageIcon": "settings",
             "execCommand": startOptions,
-            "padX": (5, 10),
-            "side": "left"
-        },
-        {
-            "buttonName": "Folder",
-            "execCommand": startFolder,
-            "padX": (5, 10),
-            "side": "right"
+            "padY": (5, 10),
+            "side": "bottom"
         }
     ]
     
     buttonFrame = ctk.CTkFrame(mainFrame, fg_color="#1E1E1E")
-    buttonFrame.pack(side="bottom", fill="x", expand=True)
+    buttonFrame.pack(fill="y", expand=True)
     
     for buttons in mainButtons:
         nameButton = buttons["buttonName"]
+        buttonImage = buttons["imageIcon"]
         commandExecute = buttons["execCommand"]
-        paddingX = buttons["padX"]
+        paddingY = buttons["padY"]
         buttonSide = buttons["side"]
     
-        itemButton = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text=nameButton, command=commandExecute)
-        itemButton.pack(padx=paddingX, pady=10, fill="x", expand=True, side=buttonSide)
+        iconPath = os.path.join(path.iconPath(), buttonImage + ".png")
+        if os.path.exists(iconPath):
+            buttonIcon = ctk.CTkImage(Image.open(iconPath), size=(20, 20))
+            itemButton = ctk.CTkButton(buttonFrame, image=buttonIcon, fg_color="#1B1B1B", text="", command=commandExecute, width=20)
+        else:
+            itemButton = ctk.CTkButton(buttonFrame, fg_color="#1B1B1B", text=nameButton, command=commandExecute, width=20)
+        itemButton.pack(padx=10, pady=paddingY, fill="y", expand=True, side=buttonSide)
 
 
-def imageInterface(root):
+def funnyInterface(root):
     container = ctk.CTkFrame(root, fg_color="transparent")
     container.pack(pady=20, padx=10)
 
@@ -84,20 +89,21 @@ def imageInterface(root):
         imageLabel = ctk.CTkLabel(container, image=ctkImage, text="")
         imageLabel.image = image #type: ignore
         imageLabel.pack(pady=10)
-        
-def labelText(root):
-    textLabel = ctk.CTkFrame(root, fg_color="transparent")
-    textLabel.pack(pady=10, padx=10)
-    
-    instanceText = ctk.CTkLabel(textLabel, text="Current instance selected: ", text_color="#FFFFFF")
-    instanceText.pack()
     
 def instanceInterface(root):
     container = ctk.CTkFrame(root, fg_color="#1E1E1E")
-    container.pack(pady=10, padx=10)
+    container.pack(pady=10, padx=10, side="bottom", fill="x", expand=True)
     
-    instanceButton = ctk.CTkButton(container, text="Select Instance", command=inst.init, fg_color="#1B1B1B")
-    instanceButton.pack(pady=10, padx=10, expand=True, fill="x", side="right")
+    iconPath = os.path.join(path.iconPath(), "folder.png")
+    if os.path.exists(iconPath):
+        buttonIcon = ctk.CTkImage(Image.open(iconPath), size=(20, 20))
+        itemButton = ctk.CTkButton(container, image=buttonIcon, fg_color="#1B1B1B", text="", command=inst.init, width=10)
+    else:
+        itemButton = ctk.CTkButton(container, fg_color="#1B1B1B", text="Create Instance", command=inst.init, width=10)
+    itemButton.pack(padx=10, pady=10, side="left")
+    
+    instanceText = ctk.CTkLabel(container, text="Current instance selected: ", text_color="#FFFFFF")
+    instanceText.pack(side="left")
     
 def startUniverse():
     print("paws at u")
