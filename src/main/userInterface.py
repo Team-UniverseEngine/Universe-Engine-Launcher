@@ -14,6 +14,7 @@ def initialize():
     root = ctk.CTk()
     root.title("Universe Launcher")
     root.geometry("640x400")
+    root.minsize(640, 400)
 
     if sys.platform == "win32":
         iconPath = os.path.join(path.imagePath(), 'icon64.ico')
@@ -30,8 +31,8 @@ def initialize():
     
     root.mainloop()
     
-def mainButton(root):
-    mainFrame = ctk.CTkFrame(root, fg_color="transparent")
+def mainButton(parent):
+    mainFrame = ctk.CTkFrame(parent, fg_color="transparent")
     mainFrame.pack(pady=10, padx=10, fill="y", side="left")
     
     # ==================== BUTTONS ====================
@@ -78,9 +79,9 @@ def mainButton(root):
         itemButton.pack(padx=10, pady=paddingY, fill="y", expand=True, side=buttonSide)
 
 
-def funnyInterface(root):
-    container = ctk.CTkFrame(root, fg_color="transparent")
-    container.pack(pady=20, padx=10)
+def funnyInterface(parent):
+    container = ctk.CTkFrame(parent, fg_color="#1E1E1E")
+    container.pack(pady=10, padx=10, fill="both", side="top", expand=True)
 
     imagePath = os.path.join(path.imagePath(), 'universe.png')
     if os.path.exists(imagePath):
@@ -88,11 +89,11 @@ def funnyInterface(root):
         ctkImage = ctk.CTkImage(image, size=(100, 100))
         imageLabel = ctk.CTkLabel(container, image=ctkImage, text="")
         imageLabel.image = image #type: ignore
-        imageLabel.pack(pady=10)
+        imageLabel.pack(pady=10, side="left")
     
-def instanceInterface(root):
-    container = ctk.CTkFrame(root, fg_color="#1E1E1E")
-    container.pack(pady=10, padx=10, side="bottom", fill="x", expand=True)
+def instanceInterface(parent):
+    container = ctk.CTkFrame(parent, fg_color="#1E1E1E")
+    container.pack(pady=(0, 10), padx=10, side="top", fill="x")
     
     iconPath = os.path.join(path.iconPath(), "folder.png")
     if os.path.exists(iconPath):
