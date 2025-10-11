@@ -101,7 +101,7 @@ def funnyInterface(parent):
     quoteRanContainer = ctk.CTkFrame(topSide, fg_color="transparent")
     quoteRanContainer.pack(side="right", fill="x", expand=True, padx=(10, 0))
         
-    quoteRan = ctk.CTkLabel(quoteRanContainer, text="Quote Randomizer!", font=ctk.CTkFont(size=24, weight="bold"), text_color="#FFFFFF")
+    quoteRan = ctk.CTkLabel(quoteRanContainer, text="Quote Randomizer!", font=ctk.CTkFont(size=24, weight="bold"), text_color="#FFFFFF", justify="left")
     quoteRan.pack(side="top", anchor="w")
     
     def getQuotes():
@@ -115,7 +115,7 @@ def funnyInterface(parent):
         except IndexError:
             return "No quotes found in quotes.txt"
         
-    quote = ctk.CTkLabel(quoteRanContainer, text=getQuotes(), font=ctk.CTkFont(size=14), text_color="#FFFFFF")
+    quote = ctk.CTkLabel(quoteRanContainer, text=getQuotes(), font=ctk.CTkFont(size=14), text_color="#FFFFFF", wraplength=400, justify="left")
     quote.pack(side="top", anchor="w")
 
 def instanceInterface(parent):
