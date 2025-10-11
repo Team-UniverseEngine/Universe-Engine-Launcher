@@ -1,5 +1,6 @@
 import os
 import sys
+import random
 
 import tkinter as tk
 import src.handler.path as path
@@ -83,14 +84,40 @@ def funnyInterface(parent):
     container = ctk.CTkFrame(parent, fg_color="#1E1E1E")
     container.pack(pady=10, padx=10, fill="both", side="top", expand=True)
 
+    topSide = ctk.CTkFrame(container, fg_color="transparent")
+    topSide.pack(pady=10, padx=10, fill="x", expand=True, side="top")
+
+    imageContainer = ctk.CTkFrame(topSide, fg_color="transparent")
+    imageContainer.pack(side="left")
+    
     imagePath = os.path.join(path.imagePath(), 'universe.png')
     if os.path.exists(imagePath):
         image = Image.open(imagePath)
         ctkImage = ctk.CTkImage(image, size=(100, 100))
-        imageLabel = ctk.CTkLabel(container, image=ctkImage, text="")
+        imageLabel = ctk.CTkLabel(imageContainer, image=ctkImage, text="")
         imageLabel.image = image #type: ignore
         imageLabel.pack(pady=10, side="left")
+        
+    quoteRanContainer = ctk.CTkFrame(topSide, fg_color="transparent")
+    quoteRanContainer.pack(side="right", fill="x", expand=True, padx=(10, 0))
+        
+    quoteRan = ctk.CTkLabel(quoteRanContainer, text="Quote Randomizer!", font=ctk.CTkFont(size=24, weight="bold"), text_color="#FFFFFF")
+    quoteRan.pack(side="top", anchor="w")
     
+    def getQuotes():
+        try:
+            fullQuotes = os.path.join(path.assetsPath(), 'data', 'quotes.txt')
+            with open(fullQuotes, 'r') as f:
+                firstArray = f.read().splitlines()
+            return random.choice(firstArray)
+        except FileNotFoundError:
+            return "quotes.txt not found"
+        except IndexError:
+            return "No quotes found in quotes.txt"
+        
+    quote = ctk.CTkLabel(quoteRanContainer, text=getQuotes(), font=ctk.CTkFont(size=14), text_color="#FFFFFF")
+    quote.pack(side="top", anchor="w")
+
 def instanceInterface(parent):
     container = ctk.CTkFrame(parent, fg_color="#1E1E1E")
     container.pack(pady=(0, 10), padx=10, side="top", fill="x")
@@ -105,10 +132,10 @@ def instanceInterface(parent):
     
     instanceText = ctk.CTkLabel(container, text="Current instance selected: ", text_color="#FFFFFF")
     instanceText.pack(side="left")
-    
+
 def startUniverse():
     print("paws at u")
-    
+
 def startOptions():
     print("barks at u")
     settings.init()
