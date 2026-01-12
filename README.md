@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> The launcher is undergoing a recode. Please do not do any issues or pull request. Your post will immediately get closed/not planned.
+
 # Universe-Engine-Launhcer
 
 This is the official Universe Engine Launcher.
