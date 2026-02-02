@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> As of right now, this repository wont be worked on unless [I](https://daveberry.netlify.app/) have motivation. It's been inactive for 4 months (as of writing this) and will be continued soon, but not now. We appreciate for your patience and we're currently just taking a break from developing.
+
 <h1>👋 | Heya folks!</h1>
 <p>
     It's me! Tenna- wait hang on this is the wrong guy... <br>
