@@ -4,7 +4,7 @@
 <h1>👋 | Heya folks!</h1>
 <p>
     It's me! Tenna- wait hang on this is the wrong guy... <br>
-    Anywas, enough foolish around. <br>
+    Anyways, enough foolish around. <br>
     Now. don't touch that code, because.
 </p>
 
